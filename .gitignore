@@ -1,26 +1,47 @@
 # Dependencies
 node_modules/
+**/node_modules/
 dist/
+**/dist/
 .wrangler/
-.dev.vars
-*.local
+**/.wrangler/
 
-# Env
+# Local secrets & env (NEVER commit)
+.dev.vars
+**/.dev.vars
 .env
 .env.*
 !.env.example
+!**/.env.example
+*.pem
+*.p12
+*.key
+id_rsa
+id_rsa.pub
+credentials.json
+**/secrets.json
+.npmrc
+.yarnrc.yml
+
+# Cloudflare / ops local
+.mf/
+.dev.vars.*
 
 # Logs / OS
 *.log
 .DS_Store
+Thumbs.db
 
 # IDE
 .idea/
 .vscode/
+*.swp
 
-# Test
+# Test / coverage / Playwright
 coverage/
-
-# Playwright
 frontend/playwright-report/
 frontend/test-results/
+**/test-results/
+
+# Local tooling that may hold PATs
+tools/github-delete-repos/
