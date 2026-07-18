@@ -1,0 +1,86 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "jsonbob-api",
+  "account_id": "3ee25fc8fe5e195ebf2e54da536e2d62",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "APP_URL": "https://jsonbob-web.blobforges.workers.dev",
+    "API_URL": "https://jsonbob-api.blobforges.workers.dev"
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "COLLAB_ROOM",
+        "class_name": "CollabRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1-collab-room",
+      "new_sqlite_classes": ["CollabRoom"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "jsonbob-db",
+      "database_id": "4b90921a-92c9-4370-952e-3803c104e68f",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "DOCUMENTS",
+      "bucket_name": "jsonbob-documents"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "948cc3025a914b0ab6c5360bde43a497"
+    },
+    {
+      "binding": "SESSIONS",
+      "id": "097cbbeee9ca4b75b393783b6281050c"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "EXPIRE_QUEUE",
+        "queue": "jsonbob-expire"
+      },
+      {
+        "binding": "ANALYTICS_QUEUE",
+        "queue": "jsonbob-analytics"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "jsonbob-expire",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3
+      },
+      {
+        "queue": "jsonbob-analytics",
+        "max_batch_size": 25,
+        "max_batch_timeout": 5,
+        "max_retries": 3
+      }
+    ]
+  },
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  }
+}
