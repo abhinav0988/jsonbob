@@ -1,7 +1,7 @@
 # jsonbob — Testing Guide
 
 **Updated:** 2026-07-17  
-**Live:** https://jsonbob-web.blobforges.workers.dev · API https://jsonbob-api.blobforges.workers.dev
+**Live:** https://jsonbob-web.abhinavmangal68.workers.dev · API https://jsonbob-api.abhinavmangal68.workers.dev
 
 Inventory of **all testing types**, how to run them, and coverage map.
 
@@ -18,6 +18,8 @@ Inventory of **all testing types**, how to run them, and coverage map.
 | Viewport E2E (Playwright) | ✅ | **32** | `npm run test:views --prefix frontend` |
 | Typecheck / build | ✅ | — | worker `tsc` · frontend `build` |
 | Lint | ✅ (warn) | — | `npm run lint --prefix frontend` |
+| Sequential E2E (single tab) | ✅ | **43** steps | `npm run test:e2e:sequential --prefix frontend` |
+| Feature validation E2E | ✅ | **42** checks | `npm run test:e2e:validate --prefix frontend` |
 | All-in-one | ✅ | — | `npm run test:all` (repo root) |
 
 **Totals:** **85 automated checks** (10 unit + 42 smoke + 1 raw flow + 32 viewport).
@@ -79,8 +81,8 @@ Env defaults to production workers.dev.
 
 | Variable | Default |
 |----------|---------|
-| `JSONBOB_API_URL` | `https://jsonbob-api.blobforges.workers.dev` |
-| `JSONBOB_WEB_URL` | `https://jsonbob-web.blobforges.workers.dev` |
+| `JSONBOB_API_URL` | `https://jsonbob-api.abhinavmangal68.workers.dev` |
+| `JSONBOB_WEB_URL` | `https://jsonbob-web.abhinavmangal68.workers.dev` |
 
 ### Smoke A — raw JSON (`npm run smoke`)
 
@@ -129,12 +131,52 @@ npm run build --prefix frontend
 npm run test:views --prefix frontend
 
 # Against live deploy
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.blobforges.workers.dev npm run test:views --prefix frontend
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev npm run test:views --prefix frontend
 ```
 
 First run needs Chromium: `cd frontend && npx playwright install chromium`
 
 HTML report: `frontend/playwright-report/index.html`
+
+### Sequential walkthrough (one tab, line-by-line, **all actions**)
+
+Use when fast parallel tests feel too random. See **`docs/FRONTEND-USE-CASES.md`** for all 129 use cases.
+
+**One browser tab · fixed order A→N · every click inside each feature before moving on:**
+Landing → Chrome → Editor (all tools) → Public view → Compare (all modes/merge) → API → Auth → Dashboard → Owned doc lifecycle → Settings → Admin → Palette → Logout
+
+```bash
+cd /home/abhinav/Videos/MyProjects/jsonbob
+
+# Watch in Chrome, slow steps
+PLAYWRIGHT_HEADED=1 PLAYWRIGHT_SLOW_MO=600 \
+  npm run test:e2e:sequential --prefix frontend
+
+# Live site (~2–3 min)
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+  PLAYWRIGHT_HEADED=1 \
+  npm run test:e2e:sequential --prefix frontend
+```
+
+Config: `frontend/playwright.sequential.config.ts` · Spec: `frontend/e2e/sequential.spec.ts` · Helpers: `frontend/e2e/helpers/completeFlow.ts`
+
+### Feature validation (valid + invalid data per feature)
+
+Tests each feature with **correct and incorrect inputs** (bad JSON, short passwords, wrong login, compare toggles, API 404, etc.) and writes a per-feature report to **`docs/QA-FEATURE-REPORT.md`**.
+
+```bash
+cd /home/abhinav/Videos/MyProjects/jsonbob
+
+# Local preview (build first) or live:
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+  npm run test:e2e:validate --prefix frontend
+
+# Watch in browser
+PLAYWRIGHT_HEADED=1 PLAYWRIGHT_SLOW_MO=400 \
+  npm run test:e2e:validate --prefix frontend
+```
+
+Config: `frontend/playwright.validation.config.ts` · Spec: `frontend/e2e/feature-validation.spec.ts`
 
 ---
 

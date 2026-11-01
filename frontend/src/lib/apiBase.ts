@@ -1,5 +1,5 @@
 /** Canonical API origin. Must be absolute in production — relative URLs hit the SPA worker (405). */
-export const PROD_API_FALLBACK = "https://jsonbob-api.blobforges.workers.dev";
+export const PROD_API_FALLBACK = "https://jsonbob-api.abhinavmangal68.workers.dev";
 
 /** Pure resolver — unit-testable without Vite `import.meta.env`. */
 export function resolveApiBaseUrl(

@@ -1,7 +1,7 @@
 {
   "$schema": "../worker/node_modules/wrangler/config-schema.json",
   "name": "jsonbob-web",
-  "account_id": "3ee25fc8fe5e195ebf2e54da536e2d62",
+  "account_id": "b3875f2c511adc2efc6107ff8e9badf2",
   "compatibility_date": "2026-07-14",
   "workers_dev": true,
   "assets": {

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "jsonbob-api",
-  "account_id": "3ee25fc8fe5e195ebf2e54da536e2d62",
+  "account_id": "b3875f2c511adc2efc6107ff8e9badf2",
   "main": "src/index.ts",
   "compatibility_date": "2026-07-14",
   "compatibility_flags": ["nodejs_compat"],
@@ -10,8 +10,8 @@
     "head_sampling_rate": 1
   },
   "vars": {
-    "APP_URL": "https://jsonbob-web.blobforges.workers.dev",
-    "API_URL": "https://jsonbob-api.blobforges.workers.dev"
+    "APP_URL": "https://jsonbob-web.abhinavmangal68.workers.dev",
+    "API_URL": "https://jsonbob-api.abhinavmangal68.workers.dev"
   },
   "ai": {
     "binding": "AI"
@@ -34,7 +34,7 @@
     {
       "binding": "DB",
       "database_name": "jsonbob-db",
-      "database_id": "4b90921a-92c9-4370-952e-3803c104e68f",
+      "database_id": "64bc484c-a6a2-4eff-a06a-ac05542c08b6",
       "migrations_dir": "migrations"
     }
   ],
@@ -47,11 +47,11 @@
   "kv_namespaces": [
     {
       "binding": "CACHE",
-      "id": "948cc3025a914b0ab6c5360bde43a497"
+      "id": "0092549bf44c44edbfe261e3585022c2"
     },
     {
       "binding": "SESSIONS",
-      "id": "097cbbeee9ca4b75b393783b6281050c"
+      "id": "0a9957b92e014ece85496a21de912196"
     }
   ],
   "queues": {

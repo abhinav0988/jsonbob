@@ -15,7 +15,7 @@
 
 **Grade:** A product · **A− frontend** (config footgun closed) · **A− backend**
 
-Live: https://jsonbob-web.blobforges.workers.dev · API https://jsonbob-api.blobforges.workers.dev
+Live: https://jsonbob-web.abhinavmangal68.workers.dev · API https://jsonbob-api.abhinavmangal68.workers.dev
 
 ### 2026-07-17 verification
 
@@ -28,7 +28,7 @@ Live: https://jsonbob-web.blobforges.workers.dev · API https://jsonbob-api.blob
 
 Issues fixed during verification:
 
-1. Updated stale `blobforge.workers.dev` production references to `blobforges.workers.dev`.
+1. Updated stale `blobforge.workers.dev` production references to `abhinavmangal68.workers.dev`.
 2. Made smoke and lint failures blocking in CI instead of `continue-on-error`.
 3. Fixed Playwright mobile execution to use the Chromium browser installed by CI.
 4. Prevented Vite Preview from proxying the SPA route `/documents/new` to the API.

@@ -12,6 +12,8 @@
     "smoke": "node scripts/smoke-raw.mjs",
     "smoke:full": "node scripts/smoke-full.mjs",
     "test:e2e": "playwright test",
+    "test:e2e:sequential": "playwright test -c playwright.sequential.config.ts",
+    "test:e2e:validate": "playwright test -c playwright.validation.config.ts",
     "test:views": "playwright test e2e/viewports.spec.ts"
   },
   "dependencies": {

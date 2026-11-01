@@ -40,6 +40,8 @@ Thumbs.db
 # Test / coverage / Playwright
 coverage/
 frontend/playwright-report/
+frontend/playwright-report-sequential/
+frontend/playwright-report-validation/
 frontend/test-results/
 **/test-results/
 
