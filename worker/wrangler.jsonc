@@ -11,7 +11,9 @@
   },
   "vars": {
     "APP_URL": "https://jsonbob-web.appsphere.workers.dev",
-    "API_URL": "https://jsonbob-api.appsphere.workers.dev"
+    "API_URL": "https://jsonbob-api.appsphere.workers.dev",
+    // Free-tier account cap is 5M rows_read/day shared; keep JSONBob under 2M.
+    "D1_DAILY_ROWS_READ_LIMIT": "2000000"
   },
   "ai": {
     "binding": "AI"

@@ -28,6 +28,11 @@ import type { AnalyticsQueueMessage, ExpireQueueMessage } from "./types";
 import { openApiSpec } from "./openapi";
 import { consumeOneTimeToken } from "./services/foldersOt";
 import { getDocumentByPublicId, readDocumentBody } from "./services/documents";
+import {
+  attachD1Budget,
+  d1BudgetRetryAfterSec,
+  isD1BudgetExemptPath,
+} from "./lib/d1Budget";
 
 export { CollabRoom } from "./durable-objects/CollabRoom";
 
@@ -215,27 +220,74 @@ app.notFound((c) =>
 );
 
 async function handleQueue(batch: MessageBatch, env: Env): Promise<void> {
-  if (batch.queue.includes("expire")) {
-    const messages = batch.messages.map((m) => m.body as ExpireQueueMessage);
-    await processExpireBatch(env, messages);
+  const budget = attachD1Budget(env);
+  if (await budget.isOverSoftLimit()) {
+    console.warn("[d1-budget] soft limit reached — skipping queue batch", {
+      queue: batch.queue,
+      softLimit: budget.softLimit,
+      usage: await budget.getUsage(),
+    });
     return;
   }
-  if (batch.queue.includes("analytics")) {
-    const messages = batch.messages.map((m) => m.body as AnalyticsQueueMessage);
-    await processAnalyticsBatch(env, messages);
+  try {
+    if (batch.queue.includes("expire")) {
+      const messages = batch.messages.map((m) => m.body as ExpireQueueMessage);
+      await processExpireBatch(budget.env, messages);
+      return;
+    }
+    if (batch.queue.includes("analytics")) {
+      const messages = batch.messages.map((m) => m.body as AnalyticsQueueMessage);
+      await processAnalyticsBatch(budget.env, messages);
+    }
+  } finally {
+    await budget.flush();
   }
 }
 
 async function handleScheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
   ctx.waitUntil(
-    scanAndEnqueueExpired(env).then((n) => {
-      console.log(JSON.stringify({ event: "expire-scan", enqueued: n }));
-    }),
+    (async () => {
+      const budget = attachD1Budget(env);
+      if (await budget.isOverSoftLimit()) {
+        console.warn("[d1-budget] soft limit reached — skipping expire-scan cron", {
+          softLimit: budget.softLimit,
+          usage: await budget.getUsage(),
+        });
+        return;
+      }
+      try {
+        const n = await scanAndEnqueueExpired(budget.env);
+        console.log(JSON.stringify({ event: "expire-scan", enqueued: n }));
+      } finally {
+        await budget.flush();
+      }
+    })(),
   );
 }
 
 export default {
-  fetch: app.fetch,
+  async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+    const path = new URL(request.url).pathname;
+    if (isD1BudgetExemptPath(path)) return app.fetch(request, env, ctx);
+
+    const budget = attachD1Budget(env);
+    if (await budget.isOverHardLimit()) {
+      return Response.json(
+        {
+          error: {
+            code: "D1_BUDGET_EXCEEDED",
+            message: "Daily database read budget reached. Try again after UTC midnight.",
+          },
+        },
+        { status: 503, headers: { "Retry-After": String(d1BudgetRetryAfterSec()) } },
+      );
+    }
+    try {
+      return await app.fetch(request, budget.env, ctx);
+    } finally {
+      ctx.waitUntil(budget.flush());
+    }
+  },
   queue: handleQueue,
   scheduled: handleScheduled,
 };
