@@ -12,7 +12,7 @@
 | [README.md](./README.md) | Quick start |
 | [PROJECT_PLAN.md](./PROJECT_PLAN.md) | Original architecture plan |
 
-**Live:** https://jsonbob-web.abhinavmangal68.workers.dev · API https://jsonbob-api.abhinavmangal68.workers.dev  
+**Live:** https://jsonbob-web.appsphere.workers.dev · API https://jsonbob-api.appsphere.workers.dev  
 
 **New:** Workers AI assist · Google OAuth · DO Live collab · server folders / one-time burn  
 **Ops:** set `GOOGLE_CLIENT_*` secrets · apply D1 migration `0002` · deploy worker (AI + DO bindings)

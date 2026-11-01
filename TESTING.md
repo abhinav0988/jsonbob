@@ -1,7 +1,7 @@
 # jsonbob — Testing Guide
 
 **Updated:** 2026-07-17  
-**Live:** https://jsonbob-web.abhinavmangal68.workers.dev · API https://jsonbob-api.abhinavmangal68.workers.dev
+**Live:** https://jsonbob-web.appsphere.workers.dev · API https://jsonbob-api.appsphere.workers.dev
 
 Inventory of **all testing types**, how to run them, and coverage map.
 
@@ -81,8 +81,8 @@ Env defaults to production workers.dev.
 
 | Variable | Default |
 |----------|---------|
-| `JSONBOB_API_URL` | `https://jsonbob-api.abhinavmangal68.workers.dev` |
-| `JSONBOB_WEB_URL` | `https://jsonbob-web.abhinavmangal68.workers.dev` |
+| `JSONBOB_API_URL` | `https://jsonbob-api.appsphere.workers.dev` |
+| `JSONBOB_WEB_URL` | `https://jsonbob-web.appsphere.workers.dev` |
 
 ### Smoke A — raw JSON (`npm run smoke`)
 
@@ -131,7 +131,7 @@ npm run build --prefix frontend
 npm run test:views --prefix frontend
 
 # Against live deploy
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev npm run test:views --prefix frontend
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev npm run test:views --prefix frontend
 ```
 
 First run needs Chromium: `cd frontend && npx playwright install chromium`
@@ -153,7 +153,7 @@ PLAYWRIGHT_HEADED=1 PLAYWRIGHT_SLOW_MO=600 \
   npm run test:e2e:sequential --prefix frontend
 
 # Live site (~2–3 min)
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   PLAYWRIGHT_HEADED=1 \
   npm run test:e2e:sequential --prefix frontend
 ```
@@ -168,7 +168,7 @@ Tests each feature with **correct and incorrect inputs** (bad JSON, short passwo
 cd /home/abhinav/Videos/MyProjects/jsonbob
 
 # Local preview (build first) or live:
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   npm run test:e2e:validate --prefix frontend
 
 # Watch in browser

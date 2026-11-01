@@ -3,8 +3,8 @@
 This document summarizes the features currently implemented in **jsonbob** (frontend + Cloudflare Worker API), and the features that are pending or planned.
 
 **Live**
-- Web: https://jsonbob-web.abhinavmangal68.workers.dev  
-- API: https://jsonbob-api.abhinavmangal68.workers.dev  
+- Web: https://jsonbob-web.appsphere.workers.dev  
+- API: https://jsonbob-api.appsphere.workers.dev  
 
 **Updated:** 2026-07-17
 
@@ -328,7 +328,7 @@ This document summarizes the features currently implemented in **jsonbob** (fron
 cd /home/abhinav/Videos/MyProjects/jsonbob
 
 # Watch interactive UI tests
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   npm run test:e2e --prefix frontend -- --ui --project=desktop-chrome
 
 # Or run everything

@@ -41,9 +41,9 @@ jobs:
       - run: npm run test:views
       - run: npm run smoke
         env:
-          JSONBOB_API_URL: https://jsonbob-api.abhinavmangal68.workers.dev
+          JSONBOB_API_URL: https://jsonbob-api.appsphere.workers.dev
       - run: npm run smoke:full
         env:
-          JSONBOB_API_URL: https://jsonbob-api.abhinavmangal68.workers.dev
-          JSONBOB_WEB_URL: https://jsonbob-web.abhinavmangal68.workers.dev
+          JSONBOB_API_URL: https://jsonbob-api.appsphere.workers.dev
+          JSONBOB_WEB_URL: https://jsonbob-web.appsphere.workers.dev
       - run: npm run lint

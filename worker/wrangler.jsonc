@@ -10,8 +10,8 @@
     "head_sampling_rate": 1
   },
   "vars": {
-    "APP_URL": "https://jsonbob-web.abhinavmangal68.workers.dev",
-    "API_URL": "https://jsonbob-api.abhinavmangal68.workers.dev"
+    "APP_URL": "https://jsonbob-web.appsphere.workers.dev",
+    "API_URL": "https://jsonbob-api.appsphere.workers.dev"
   },
   "ai": {
     "binding": "AI"

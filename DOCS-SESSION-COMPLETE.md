@@ -8,12 +8,12 @@ Complete record of what was built, fixed, and deployed for **jsonbob** (JSONBlob
 
 | App | URL |
 |-----|-----|
-| **Frontend** | https://jsonbob-web.abhinavmangal68.workers.dev |
-| **API** | https://jsonbob-api.abhinavmangal68.workers.dev |
-| Editor | https://jsonbob-web.abhinavmangal68.workers.dev/documents/new |
-| Compare | https://jsonbob-web.abhinavmangal68.workers.dev/compare |
-| Raw JSON example | `https://jsonbob-api.abhinavmangal68.workers.dev/json/{id}` |
-| Share view | `https://jsonbob-web.abhinavmangal68.workers.dev/view/{id}` |
+| **Frontend** | https://jsonbob-web.appsphere.workers.dev |
+| **API** | https://jsonbob-api.appsphere.workers.dev |
+| Editor | https://jsonbob-web.appsphere.workers.dev/documents/new |
+| Compare | https://jsonbob-web.appsphere.workers.dev/compare |
+| Raw JSON example | `https://jsonbob-api.appsphere.workers.dev/json/{id}` |
+| Share view | `https://jsonbob-web.appsphere.workers.dev/view/{id}` |
 
 ---
 
@@ -54,7 +54,7 @@ Complete record of what was built, fixed, and deployed for **jsonbob** (JSONBlob
   - `API_URL` = API URL  
 - Secrets: `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`
 - D1 migration applied remote
-- Frontend build: `VITE_API_BASE_URL=https://jsonbob-api.abhinavmangal68.workers.dev`
+- Frontend build: `VITE_API_BASE_URL=https://jsonbob-api.appsphere.workers.dev`
 - `frontend/wrangler.jsonc` — SPA assets deploy
 
 ### How domains work
@@ -175,14 +175,14 @@ jsonbob/
 
 ### Frontend (build-time)
 ```bash
-VITE_API_BASE_URL=https://jsonbob-api.abhinavmangal68.workers.dev
+VITE_API_BASE_URL=https://jsonbob-api.appsphere.workers.dev
 ```
 Empty locally → Vite proxies to `http://127.0.0.1:8787`.
 
 ### Worker (`wrangler.jsonc` vars)
 ```jsonc
-"APP_URL": "https://jsonbob-web.abhinavmangal68.workers.dev",
-"API_URL": "https://jsonbob-api.abhinavmangal68.workers.dev"
+"APP_URL": "https://jsonbob-web.appsphere.workers.dev",
+"API_URL": "https://jsonbob-api.appsphere.workers.dev"
 ```
 
 ### Worker secrets
@@ -203,7 +203,7 @@ npx wrangler deploy
 
 # Frontend
 cd frontend
-VITE_API_BASE_URL=https://jsonbob-api.abhinavmangal68.workers.dev npm run build
+VITE_API_BASE_URL=https://jsonbob-api.appsphere.workers.dev npm run build
 npx wrangler deploy
 ```
 

@@ -5,7 +5,7 @@
 **Automated runner:** `npm run test:e2e:sequential --prefix frontend`  
 Runs **one tab**, **fixed order A→N**, clicks **every action inside each feature** before moving on.
 
-**Live URLs:** Web https://jsonbob-web.abhinavmangal68.workers.dev · API https://jsonbob-api.abhinavmangal68.workers.dev
+**Live URLs:** Web https://jsonbob-web.appsphere.workers.dev · API https://jsonbob-api.appsphere.workers.dev
 
 ---
 
@@ -26,7 +26,7 @@ npm run test:e2e:sequential --prefix frontend
 PLAYWRIGHT_HEADED=1 PLAYWRIGHT_SLOW_MO=600 npm run test:e2e:sequential --prefix frontend
 
 # Against live deploy
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   PLAYWRIGHT_HEADED=1 \
   npm run test:e2e:sequential --prefix frontend
 ```

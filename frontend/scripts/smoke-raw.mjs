@@ -2,9 +2,9 @@
  * Smoke: raw /json/:id must never be HTML.
  * Run against a live API (defaults to prod workers.dev).
  *
- *   JSONBOB_API_URL=https://jsonbob-api.abhinavmangal68.workers.dev npm run smoke
+ *   JSONBOB_API_URL=https://jsonbob-api.appsphere.workers.dev npm run smoke
  */
-const API = (process.env.JSONBOB_API_URL || "https://jsonbob-api.abhinavmangal68.workers.dev").replace(
+const API = (process.env.JSONBOB_API_URL || "https://jsonbob-api.appsphere.workers.dev").replace(
   /\/$/,
   "",
 );

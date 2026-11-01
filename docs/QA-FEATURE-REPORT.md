@@ -1,7 +1,7 @@
 # jsonbob — QA Feature Validation Report
 
 **Generated:** 2026-07-20T07:34:05.850Z
-**Target:** https://jsonbob-web.abhinavmangal68.workers.dev
+**Target:** https://jsonbob-web.appsphere.workers.dev
 **Duration:** 69s
 
 ## Summary

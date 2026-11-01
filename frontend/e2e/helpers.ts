@@ -23,7 +23,7 @@ export async function expectBundleHasApiHost(page: Page) {
     if (!src) continue;
     const res = await page.request.get(src.startsWith("http") ? src : new URL(src, page.url()).toString());
     const js = await res.text();
-    if (js.includes("jsonbob-api.abhinavmangal68.workers.dev") || js.includes("127.0.0.1:8787")) {
+    if (js.includes("jsonbob-api.appsphere.workers.dev") || js.includes("127.0.0.1:8787")) {
       found = true;
       break;
     }

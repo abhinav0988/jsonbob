@@ -89,7 +89,7 @@ PLAYWRIGHT_HEADED=1 PLAYWRIGHT_SLOW_MO=600 \
   npm run test:e2e:sequential --prefix frontend
 
 # Live site
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   PLAYWRIGHT_HEADED=1 \
   npm run test:e2e:sequential --prefix frontend
 ```
@@ -101,7 +101,7 @@ Against **live deploy**:
 ```bash
 cd /home/abhinav/Videos/MyProjects/jsonbob
 
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   npm run test:e2e --prefix frontend -- e2e/flows.spec.ts --headed --workers=1
 ```
 
@@ -119,7 +119,7 @@ Interactive UI picker:
 ```bash
 cd /home/abhinav/Videos/MyProjects/jsonbob
 
-PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
+PLAYWRIGHT_BASE_URL=https://jsonbob-web.appsphere.workers.dev \
   npm run test:e2e --prefix frontend -- --ui --project=desktop-chrome
 ```
 
@@ -127,8 +127,8 @@ PLAYWRIGHT_BASE_URL=https://jsonbob-web.abhinavmangal68.workers.dev \
 
 | | URL |
 |--|-----|
-| Web | https://jsonbob-web.abhinavmangal68.workers.dev |
-| API | https://jsonbob-api.abhinavmangal68.workers.dev |
+| Web | https://jsonbob-web.appsphere.workers.dev |
+| API | https://jsonbob-api.appsphere.workers.dev |
 
 ### Spec files
 

@@ -3,11 +3,11 @@
  *
  *   npm run smoke:full --prefix frontend
  */
-const API = (process.env.JSONBOB_API_URL || "https://jsonbob-api.abhinavmangal68.workers.dev").replace(
+const API = (process.env.JSONBOB_API_URL || "https://jsonbob-api.appsphere.workers.dev").replace(
   /\/$/,
   "",
 );
-const WEB = (process.env.JSONBOB_WEB_URL || "https://jsonbob-web.abhinavmangal68.workers.dev").replace(
+const WEB = (process.env.JSONBOB_WEB_URL || "https://jsonbob-web.appsphere.workers.dev").replace(
   /\/$/,
   "",
 );
@@ -79,12 +79,12 @@ async function main() {
     ok("web /login serves SPA HTML", webHtml.ok && html.includes("<!"), `status ${webHtml.status}`);
     ok(
       "web bundle references API host",
-      /jsonbob-api\.abhinavmangal68\.workers\.dev/.test(html) ||
+      /jsonbob-api\.appsphere\.workers\.dev/.test(html) ||
         (await (async () => {
           const m = html.match(/\/assets\/[^"]+\.js/);
           if (!m) return false;
           const js = await (await fetch(`${WEB}${m[0]}`)).text();
-          return js.includes("jsonbob-api.abhinavmangal68.workers.dev");
+          return js.includes("jsonbob-api.appsphere.workers.dev");
         })()),
       "API base missing from production assets",
     );

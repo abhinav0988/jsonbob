@@ -24,7 +24,7 @@ jobs:
       - working-directory: frontend
         run: npm ci && npm run build
         env:
-          VITE_API_BASE_URL: https://jsonbob-api.abhinavmangal68.workers.dev
+          VITE_API_BASE_URL: https://jsonbob-api.appsphere.workers.dev
       - name: Publish frontend Worker
         uses: cloudflare/wrangler-action@v3
         with:

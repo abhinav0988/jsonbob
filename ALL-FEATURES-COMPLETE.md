@@ -4,8 +4,8 @@
 **Product status:** ✅ **64 / 64 complete** · 🟡 Partial **0** · ❌ Missing **0** · ⏸ Deferred **0**
 
 **Live**
-- Frontend: https://jsonbob-web.abhinavmangal68.workers.dev  
-- API: https://jsonbob-api.abhinavmangal68.workers.dev  
+- Frontend: https://jsonbob-web.appsphere.workers.dev  
+- API: https://jsonbob-api.appsphere.workers.dev  
 
 **Related:** [FEATURE-COMPLETE.md](./FEATURE-COMPLETE.md) · [TESTING.md](./TESTING.md) · [SECURITY.md](./SECURITY.md)
 
